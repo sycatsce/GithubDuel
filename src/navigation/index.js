@@ -1,12 +1,12 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../features/Home/HomeScreen';
 import DuelScreen from '../features/Duel/DuelScreen';
 import PopularScreen from '../features/Popular/PopularScreen';
 import ResultsScreen from '../features/Duel/ResultsScreen';
 
-const DuelSwitch = createSwitchNavigator({
+const DuelSwitch = createStackNavigator({
   Duel: DuelScreen,
   Results : ResultsScreen
 });
@@ -16,7 +16,7 @@ const BottomTabNavigator = createBottomTabNavigator({
     screen: DuelSwitch,
     navigationOptions: {
       tabBarIcon: ({}) => (
-        <Icon name="hand-rock" size={20} color="#000" />
+        <Icon name="bolt" size={20} color="#000" />
       )
     }
   },

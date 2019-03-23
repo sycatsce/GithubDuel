@@ -24,7 +24,7 @@ export const style = StyleSheet.create({
     },
 
     touchable: {
-        backgroundColor: 'grey',
+        backgroundColor: '#D3D3D3',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,

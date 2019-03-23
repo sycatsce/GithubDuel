@@ -21,7 +21,7 @@ export const style = StyleSheet.create({
     },
 
     touchable: {
-        backgroundColor: 'grey',
+        backgroundColor: '#D3D3D3',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
@@ -45,5 +45,16 @@ export const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: '10%'
+    },
+
+    resultsContainer: {
+        marginTop: '20%',
+        paddingLeft: '10%',
+        paddingRight: '10%'
+    },
+
+    centered: {
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

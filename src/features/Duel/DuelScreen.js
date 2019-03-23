@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as duelActions from './actions';
@@ -9,6 +9,9 @@ import * as api from '../../api/github';
 import { style } from './DuelStyle';
 
 class DuelScreen extends React.Component{
+
+    static navigationOptions = { header: null }
+
     constructor(props){
         super(props);
         this.state = { username1 : 'sycatsce', username2: 'so-mouga', playerOneStars : 0, playerTwoStars : 0, scorePlayerOne : 0, scorePlayerTwo : 0 };
@@ -50,28 +53,37 @@ class DuelScreen extends React.Component{
                     <Text style={style.title}> IT'S TIME TO D-D-D-D-DUEL </Text>
                 </View>
 
-                        {  !playerOneReady ? 
-                            <PlayerInput
-                                label={"Player One"}
-                                action={ () => playerOneReadyAction() }
-                                onChangeText={ (parUsername) => this.setState({ username1 : parUsername }) }
-                                username={username1}
-                            /> :
-                            <PlayerReady actionSetUser={setPlayerOneAction} actionUnready={() => playerOneUnreadyAction()} username={username1} />
-                        }
+                {  !playerOneReady ? 
+                    <PlayerInput
+                        label={"Player One"}
+                        action={ () => playerOneReadyAction() }
+                        onChangeText={ (parUsername) => this.setState({ username1 : parUsername }) }
+                        username={username1}
+                    /> :
+                    <PlayerReady actionSetUser={setPlayerOneAction} actionUnready={() => playerOneUnreadyAction()} username={username1} />
+                }
 
-                        {   !playerTwoReady ? 
-                            <PlayerInput
-                                label={"Player Two"}
-                                action={ () => playerTwoReadyAction() }
-                                onChangeText={ (parUsername) => this.setState({ username2 : parUsername }) }
-                                username={username2}
-                            /> :
-                            <PlayerReady actionSetUser={setPlayerTwoAction} actionUnready={() => playerTwoUnreadyAction()} username={username2} />
-                        }
+                {   !playerTwoReady ? 
+                    <PlayerInput
+                        label={"Player Two"}
+                        action={ () => playerTwoReadyAction() }
+                        onChangeText={ (parUsername) => this.setState({ username2 : parUsername }) }
+                        username={username2}
+                    /> :
+                    <PlayerReady actionSetUser={setPlayerTwoAction} actionUnready={() => playerTwoUnreadyAction()} username={username2} />
+                }
 
-                    { (playerOneReady && playerTwoReady ) && <Button title="Duel" onPress={ () => this.getStars() } /> }
-
+                { 
+                    (playerOneReady && playerTwoReady ) &&
+                    <TouchableHighlight
+                        style={style.touchable}
+                        onPress={ () => { this.getStars() } }
+                    >
+                        <Text style={style.textButton}>
+                            Duel
+                        </Text>
+                    </TouchableHighlight>
+                }
             </View>
         );
     }
