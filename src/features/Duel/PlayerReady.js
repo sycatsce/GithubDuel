@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableHighlight, Image } from 'react-native';
 import * as api from '../../api/github';
+import { style } from './DuelStyle';
 
 export default class PlayerReady extends React.Component{
 
@@ -16,16 +17,19 @@ export default class PlayerReady extends React.Component{
 
     render() {
         var { user } = this.state;
-        var { actionUnready } = this.props; //Action passé en propriété par le père
+        var { actionUnready } = this.props;
         return(
-            <View>
-                <View>
-                    <Image
-                        style={{ width: 50, height: 50 }}
-                        source={{uri: user.avatar_url}}
-                    />
-                    <Text> { "@" + user.login }</Text>
-                    <TouchableHighlight onPress={ () => actionUnready() }>
+            <View style={style.readyContainer}>
+                <Image
+                    style={{ width: 50, height: 50 }}
+                    source={{uri: user.avatar_url}}
+                />
+                <Text style={style.username}> { "@" + user.login }</Text>
+                <View style={style.touchableContainer}>
+                    <TouchableHighlight
+                        onPress={ () => actionUnready() }
+                        style={style.touchable}
+                    >
                         <Text> Reset </Text>
                     </TouchableHighlight>
                 </View>

@@ -35,5 +35,15 @@ export const style = StyleSheet.create({
 
     textButton: {
         fontSize: 20
+    },
+
+    username: {
+        fontWeight: 'bold'
+    },
+
+    readyContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '10%'
     }
 })
