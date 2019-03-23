@@ -6,6 +6,7 @@ import * as duelActions from './actions';
 import PlayerInput from './PlayerInput';
 import PlayerReady from './PlayerReady';
 import * as api from '../../api/github';
+import { style } from './DuelStyle';
 
 class DuelScreen extends React.Component{
     constructor(props){
@@ -44,9 +45,9 @@ class DuelScreen extends React.Component{
         var { username1, username2 } = this.state;
         var { playerOneReady, playerTwoReady, actions:{ playerOneReadyAction, playerTwoReadyAction, playerOneUnreadyAction, playerTwoUnreadyAction, setPlayerOneAction, setPlayerTwoAction } } = this.props;
         return(
-            <View>
-                <View>
-                    <Text> IT'S TIME TO D-D-D-D-DUEL </Text>
+            <View style={style.container}>
+                <View style={style.titleContainer}>
+                    <Text style={style.title}> IT'S TIME TO D-D-D-D-DUEL </Text>
                 </View>
 
                         {  !playerOneReady ? 
@@ -56,9 +57,7 @@ class DuelScreen extends React.Component{
                                 onChangeText={ (parUsername) => this.setState({ username1 : parUsername }) }
                                 username={username1}
                             /> :
-                            <View>
-                                <PlayerReady actionSetUser={setPlayerOneAction} actionUnready={() => playerOneUnreadyAction()} username={username1} />
-                            </View>
+                            <PlayerReady actionSetUser={setPlayerOneAction} actionUnready={() => playerOneUnreadyAction()} username={username1} />
                         }
 
                         {   !playerTwoReady ? 

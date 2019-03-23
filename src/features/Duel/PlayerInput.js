@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Fumi } from 'react-native-textinput-effects';
+import { style } from './DuelStyle';
 
 export default class PlayerInput extends React.Component{
     constructor(props){
@@ -12,7 +13,7 @@ export default class PlayerInput extends React.Component{
     render() {
         var { label, action, onChangeText, username } = this.props;
         return(
-            <View>
+            <View style={style.inputContainer}>
                 <Fumi
                     label={label}
                     iconClass={FontAwesomeIcon}
@@ -24,11 +25,14 @@ export default class PlayerInput extends React.Component{
                     value={username}
                     onChangeText={ (username) => onChangeText(username) }
                 />
-                <TouchableHighlight
-                    onPress={ () => action() }
-                >
-                    <Text> Submit </Text>
-                </TouchableHighlight>
+                <View style={style.touchableContainer}>
+                    <TouchableHighlight
+                        style={style.touchable}
+                        onPress={ () => action() }
+                    >
+                        <Text style={style.textButton}> Submit </Text>
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }

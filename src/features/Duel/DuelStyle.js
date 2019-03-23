@@ -6,21 +6,18 @@ export const style = StyleSheet.create({
     },
 
     titleContainer: {
-        marginTop: '30%'
+        marginTop: '10%',
+        marginBottom: '20%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
     title: {
-        fontSize: 30
-    },
-
-    description: {
         fontSize: 20
     },
 
-    touchableContainer: {
-        paddingLeft: '20%',
-        paddingRight: '20%',
-        marginTop: '10%'
+    inputContainer: {
+        margin: '10%'
     },
 
     touchable: {
@@ -30,7 +27,13 @@ export const style = StyleSheet.create({
         borderRadius: 20,
     },
 
+    touchableContainer: {
+        paddingLeft: '20%',
+        paddingRight: '20%',
+        marginTop: '10%'
+    },
+
     textButton: {
-        fontSize: 25
+        fontSize: 20
     }
 })
