@@ -18,7 +18,7 @@ export const getUserRepos = (username) => {
     .catch((error) => console.log(error))  
 }
 
-export const getPopularRepos = (language = 'all') => {
+export const getPopularRepos = (language) => {
     return axios.get(baseUri + '/search/repositories?q=stars:>1+language:' + language + '&sort=stars&order=desc&type=Repositories?client_id=' + clientId + '&client_secret=' + clientSecret)
     .then((response) => {
         return response.data;
