@@ -15,5 +15,13 @@ export const getUserRepos = (username) => {
     .then((response) => {
         return response.data;
     })
-    .catch((error) => console.log(baseUri + '/users/' + username + '/repos?client_id=' + clientId + '&client_secret=' + clientSecret))  
+    .catch((error) => console.log(error))  
+}
+
+export const getPopularRepos = (language = 'all') => {
+    return axios.get(baseUri + '/search/repositories?q=stars:>1+language:' + language + '&sort=stars&order=desc&type=Repositories?client_id=' + clientId + '&client_secret=' + clientSecret)
+    .then((response) => {
+        return response.data;
+    })
+    .catch((error) => console.log(error))  
 }
