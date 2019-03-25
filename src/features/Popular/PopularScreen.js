@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, TouchableHighlight, FlatList, ActivityIndicator } from 'react-native';
+import { Text, View, TouchableHighlight, FlatList, ActivityIndicator, Image } from 'react-native';
 import * as api from '../../api/github';
+import { style } from './PopularStyle';
 
 export default class PopularScreen extends React.Component{
 
@@ -29,29 +30,37 @@ export default class PopularScreen extends React.Component{
       )
     }
     return(
-      <View>
+      <View style={style.container}>
           {
             this.state.loading == true ?
             <ActivityIndicator size="large" /> :
             <View> 
-              <View>
-                  <Text> Popular Repositories </Text>
+              <View style={style.titleContainer}>
+                  <Text style={style.title}> Popular Repositories </Text>
               </View>
 
-              <View>
-                <TouchableHighlight onPress={ () => this.getPopularRepos('javascript') } ><Text>JavaScript</Text></TouchableHighlight>
-                <TouchableHighlight onPress={ () => this.getPopularRepos('ruby') } ><Text>Ruby</Text></TouchableHighlight>
-                <TouchableHighlight onPress={ () => this.getPopularRepos('go') } ><Text>Go</Text></TouchableHighlight>
+              <View style={style.languageFilterContainer}>
+                <TouchableHighlight style={style.languageFilter} onPress={ () => this.getPopularRepos('javascript') } ><Text style={style.textButton}>JavaScript</Text></TouchableHighlight>
+                <TouchableHighlight style={style.languageFilter} onPress={ () => this.getPopularRepos('ruby') } ><Text style={style.textButton}>Ruby</Text></TouchableHighlight>
+                <TouchableHighlight style={style.languageFilter} onPress={ () => this.getPopularRepos('go') } ><Text style={style.textButton}>Go</Text></TouchableHighlight>
               </View>
 
               <View>
                 <FlatList
                   data={this.state.repositories}
                   renderItem={ (repo) => (
+                    <View style={style.repositoriesContainer}>
                       <View>
                         <Text style={{ fontWeight: 'bold' }}>{ repo.item.name } </Text>
-                        <Text style={{ fontSize: 15 }}>{ repo.item.stargazers_count + "\n" }</Text>
+                        <Text style={{ fontSize: 15 }}>{ repo.item.stargazers_count + " stars \n" }</Text>
                       </View>
+                      <View style={style.imageContainer}>
+                        <Image
+                            style={{ width: 50, height: 50 }}
+                            source={{uri: repo.item.owner.avatar_url}}
+                        />
+                      </View>
+                    </View>
                   )}
                 /> 
               </View>
